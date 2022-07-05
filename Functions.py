@@ -1,11 +1,9 @@
 #!/usr/bin/python3
 from hashlib import md5
-from tkinter.messagebox import showwarning
+from tkinter.messagebox import showwarning, showinfo
 from ips_util import Patch
 from shutil import copyfile
-import os, subprocess
-import Constants
-
+import os, subprocess, Constants
 
 def check_rom(filename):
     if filename == '':
@@ -16,6 +14,10 @@ def check_rom(filename):
             file_hash.update(chunk)
 
     return file_hash.hexdigest() == 'f41e36204356974c94fabf7d144dd32a'
+
+def apply_preset(app, preset):
+    for key in preset.keys():
+            getattr(app, key).set(preset[key])
 
 def apply_patch(base, ips):
     patch = Patch.load(ips)
@@ -29,11 +31,14 @@ def apply_patch(base, ips):
 
 def show_warning(message):
     showwarning(title=Constants.WARNING_TITLE, message=message)
+    
+def show_success(message):
+    showinfo(title=Constants.SUCCESS_TITLE, message=message)
 
 def set_progress(app, percent, message):
     app.progress.set(percent)
-    app.progress_text.set(message)
-    
+    app.progress_text.set(message) 
+
 def start_patching(app):
     set_progress(app, 20, Constants.STATUS_MD5)
     delete_list = []
@@ -88,4 +93,5 @@ def start_patching(app):
         os.remove(item)
 
     set_progress(app, 100, Constants.STATUS_CLEANED)
+    show_success(Constants.SUCCESS_CONTENT)
     

@@ -1,27 +1,94 @@
 #!/usr/bin/python3
-import tkinter as tk
-import os
-import Constants
-from Gui import PatcherApp
-from Functions import check_rom, show_warning
+import os, tkinter, Constants
+from tkinter.filedialog import askopenfilename
+from Functions import check_rom, show_warning, start_patching, apply_preset, set_progress
+from pathlib import Path
+from pygubu import Builder
 
-tools_path = os.path.join('.', 'tools')
-alt_path = os.path.join(tools_path, 'alt')
+PROJECT_PATH = Path(__file__).parent
+PROJECT_UI = PROJECT_PATH / "patcher.ui"
 
-if __name__ == "__main__":
+class PatcherApp:
+    def __init__(self, master=None, baserom=None):
+        self.builder = builder = Builder()
+        builder.add_resource_path(PROJECT_PATH)
+        builder.add_from_file(PROJECT_UI)
+        # Main widget
+        self.mainwindow = builder.get_object("main_frame", master)
+
+        self.browse_path = None
+        self.preset = None
+        self.font = None
+        self.places = None
+        self.sprites = None
+        self.palette = None
+        self.skip_m1 = None
+        self.progress = None
+        self.progress_text = None
+        builder.import_variables(
+            self,
+            [
+                "browse_path",
+                "preset",
+                "font",
+                "places",
+                "sprites",
+                "palette",
+                "skip_m1",
+                "progress",
+                "progress_text",
+            ],
+        )
+        apply_preset(self, next(iter(Constants.PRESETS.items()))[1])
+        self.progress_text.set(Constants.STATUS_START)
+        
+        self.apply_button = builder.get_object("apply_button")
+        
+        if baserom is not None:
+            self.browse_path.set(baserom)
+        
+        builder.connect_callbacks(self)
     
-    if not os.path.isdir(alt_path):
+    def run(self):
+        self.mainwindow.mainloop()
+
+    def on_browse_button(self):
+        fn = askopenfilename(filetypes=[(Constants.VAR_FILEPICKER, '*.gba')])
+        self.browse_path.set(fn)
+
+    def on_change_preset(self, option):
+        preset = Constants.PRESETS[option]
+        apply_preset(self, preset)
+        
+        set_progress(self, 0, Constants.STATUS_PRESET)
+
+    def on_apply_button(self):
+        self.apply_button['state'] = 'disabled'
+        
+        baserom_temp = self.browse_path.get()
+        
+        if not check_rom(baserom_temp):
+            show_warning(Constants.WARNING_MD5_MISMATCH)
+            self.apply_button['state'] = 'normal'
+            return
+        self.baserom = baserom_temp
+        start_patching(self)
+
+def main():
+    if not os.path.isdir(Constants.PATH_TOOLS):
         show_warning(Constants.WARNING_EXTRACT)
-        exit()
+        return
 
     baserom = None
     for file in os.listdir('.'):
         if file.lower().endswith('.gba'):
             filename = os.path.join('.', file)
-            if(check_rom(filename)):
-                baserom = filename
+            baserom = filename if check_rom(filename) else baserom
     
-    root = tk.Tk()
+    root = tkinter.Tk()
     root.title(Constants.VAR_WINDOW_TITLE)
     app = PatcherApp(root, baserom)
     app.run()
+
+if __name__ == "__main__":
+    main()

@@ -5,5 +5,4 @@ __pycache__
 tools
 venv
 *.gba
-patcher
-patcher.spec
+*.sav

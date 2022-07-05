@@ -5,7 +5,7 @@ from sys import platform
 PATCH_VERSION = '1.1.1'
 FINAL_ROM_NAME = f'Mother 1+2 [T+Ita{PATCH_VERSION}].gba'
 
-STATUS_START = "Benvenutə al patcher per Mother 1+2."
+STATUS_START = "Benvenuto al patcher per Mother 1+2."
 STATUS_PRESET = "Preset applicato."
 STATUS_MD5 = "MD5 verificato."
 STATUS_COPIED = "File copiati."
@@ -21,6 +21,9 @@ WARNING_TITLE = "Attenzione"
 WARNING_EXTRACT = "È necessario estrarre l'archivio."
 WARNING_MD5_MISMATCH = "La ROM selezionata non è compatibile con la nostra patch."
 
+SUCCESS_TITLE = "Finito!"
+SUCCESS_CONTENT = f"La ROM {FINAL_ROM_NAME} è stata creata con successo!"
+
 PATH_TOOLS = os.path.join('.', 'tools')
 PATH_ALT = os.path.join(PATH_TOOLS, 'alt')
 
@@ -30,28 +33,28 @@ PRESETS = {
         'sprites': 3,
         'places': 6,
         'palette': 8,
-        'skip_m1': 1
+        'skip_m1': 12
         },
     "EB Beginnings (US)": {
         'font': 1,
         'sprites': 4,
         'places': 6,
         'palette': 8,
-        'skip_m1': 1
+        'skip_m1': 12
         },
     "Mother 1 (JP)": {
         'font': 1,
         'sprites': 5,
         'places': 7,
         'palette': 8,
-        'skip_m1': 1
+        'skip_m1': 12
         },
     "Mother 1+2": {
         'font': 1,
         'sprites': 4,
         'places': 7,
         'palette': 9,
-        'skip_m1': 0
+        'skip_m1': 13
         }
 }
 
