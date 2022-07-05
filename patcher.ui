@@ -283,8 +283,7 @@
         <property name="command" type="command" cbtype="simple">on_apply_button</property>
         <property name="text" translatable="yes">Applica!</property>
         <layout manager="grid">
-          <property name="column">0</property>
-          <property name="columnspan">2</property>
+          <property name="column">1</property>
           <property name="ipadx">2</property>
           <property name="ipady">2</property>
           <property name="padx">5</property>
@@ -292,6 +291,35 @@
           <property name="row">4</property>
           <property name="sticky">ew</property>
         </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Frame" id="frame1">
+        <property name="height">200</property>
+        <property name="width">200</property>
+        <layout manager="grid">
+          <property name="column">0</property>
+          <property name="row">4</property>
+        </layout>
+        <child>
+          <object class="ttk.Progressbar" id="progress_bar">
+            <property name="length">215</property>
+            <property name="orient">horizontal</property>
+            <property name="variable">int:progress</property>
+            <layout manager="pack">
+              <property name="side">top</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Label" id="progress_label">
+            <property name="text" translatable="yes">Benvenutə al patcher per Mother 1+2.</property>
+            <property name="textvariable">string:progress_text</property>
+            <layout manager="pack">
+              <property name="side">top</property>
+            </layout>
+          </object>
+        </child>
       </object>
     </child>
   </object>

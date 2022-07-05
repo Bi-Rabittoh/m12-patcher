@@ -1,44 +1,16 @@
 #!/usr/bin/python3
 import tkinter as tk
 from tkinter.filedialog import askopenfilename
-import pathlib, pygubu
+import pathlib
+import pygubu
+import Constants
+from Functions import check_rom, show_warning
 
 PROJECT_PATH = pathlib.Path(__file__).parent
 PROJECT_UI = PROJECT_PATH / "patcher.ui"
 
-presets = {
-    "Scelte consigliate": {
-        'font': 1,
-        'sprites': 3,
-        'places': 6,
-        'palette': 8,
-        'skip_m1': 1
-        },
-    "EB Beginnings (US)": {
-        'font': 1,
-        'sprites': 4,
-        'places': 6,
-        'palette': 8,
-        'skip_m1': 1
-        },
-    "Mother 1 (JP)": {
-        'font': 1,
-        'sprites': 5,
-        'places': 7,
-        'palette': 8,
-        'skip_m1': 1
-        },
-    "Mother 1+2": {
-        'font': 1,
-        'sprites': 4,
-        'places': 7,
-        'palette': 9,
-        'skip_m1': 0
-        }
-}
-
 class PatcherApp:
-    def __init__(self, master=None):
+    def __init__(self, master=None, baserom=None):
         self.builder = builder = pygubu.Builder()
         builder.add_resource_path(PROJECT_PATH)
         builder.add_from_file(PROJECT_UI)
@@ -52,6 +24,8 @@ class PatcherApp:
         self.sprites = None
         self.palette = None
         self.skip_m1 = None
+        self.progress = None
+        self.progress_text = None
         builder.import_variables(
             self,
             [
@@ -62,6 +36,8 @@ class PatcherApp:
                 "sprites",
                 "palette",
                 "skip_m1",
+                "progress",
+                "progress_text",
             ],
         )
         self.font.set(1)
@@ -69,27 +45,39 @@ class PatcherApp:
         self.places.set(6)
         self.palette.set(8)
         self.skip_m1.set(1)
+        self.progress_text.set(Constants.STATUS_START)
+        
+        self.apply_button = builder.get_object("apply_button")
+        
+        if baserom is not None:
+            self.browse_path.set(baserom)
         
         builder.connect_callbacks(self)
+    
+    def set_progress(self, percent, message):
+        self.progress.set(percent)
+        self.progress_text.set(message)
 
+    
+    
     def run(self):
         self.mainwindow.mainloop()
 
     def on_browse_button(self):
-        fn = askopenfilename(filetypes=[('ROM giapponese di Mother 1+2', '*.gba'), ('Tutti i file', '*')])
+        fn = askopenfilename(filetypes=[(Constants.VAR_FILEPICKER, '*.gba')])
         self.browse_path.set(fn)
 
     def on_change_preset(self, option):
-        new_vars = presets[option]
+        new_vars = Constants.PRESETS[option]
         
         for key in new_vars.keys():
             getattr(self, key).set(new_vars[key])
 
     def on_apply_button(self):
-        pass
-
-
-if __name__ == "__main__":
-    root = tk.Tk()
-    app = PatcherApp(root)
-    app.run()
+        self.apply_button['state'] = 'disabled'
+        
+        if check_rom(self.browse_path.get()):
+            self.set_progress(20, Constants.STATUS_MD5)
+        else:
+            show_warning(Constants.WARNING_MD5_MISMATCH)
+            self.apply_button['state'] = 'normal'
