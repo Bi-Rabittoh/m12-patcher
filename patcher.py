@@ -22,5 +22,6 @@ if __name__ == "__main__":
                 baserom = filename
     
     root = tk.Tk()
+    root.title(Constants.VAR_WINDOW_TITLE)
     app = PatcherApp(root, baserom)
     app.run()

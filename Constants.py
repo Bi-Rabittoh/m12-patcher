@@ -1,10 +1,12 @@
 #!/usr/bin/python3
 PATCH_VERSION = '1.1.1'
-FINAL_ROM_NAME = f'Mother 1+2 [T+Ita{patch_version}].gba'
+FINAL_ROM_NAME = f'Mother 1+2 [T+Ita{PATCH_VERSION}].gba'
 
 STATUS_START = "Benvenutə al patcher per Mother 1+2."
+STATUS_PRESET = "Preset applicato."
 STATUS_MD5 = "MD5 verificato."
 
+VAR_WINDOW_TITLE = "Mother 1+2 Patcher by Earthbound Café"
 VAR_FILEPICKER = "ROM giapponese di Mother 1+2"
 
 WARNING_TITLE = "Attenzione"

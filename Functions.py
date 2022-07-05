@@ -4,6 +4,8 @@ from tkinter.messagebox import showwarning
 import Constants
 
 def check_rom(filename):
+    if filename == '':
+        return False
     with open(filename, 'rb') as f:
         file_hash = md5()
         while chunk := f.read(8192):

@@ -69,6 +69,7 @@ class PatcherApp:
 
     def on_change_preset(self, option):
         new_vars = Constants.PRESETS[option]
+        self.set_progress(0, Constants.STATUS_PRESET)
         
         for key in new_vars.keys():
             getattr(self, key).set(new_vars[key])
