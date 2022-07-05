@@ -266,8 +266,8 @@
         </layout>
         <child>
           <object class="ttk.Checkbutton" id="skip_m1_check">
-            <property name="offvalue">0</property>
-            <property name="onvalue">1</property>
+            <property name="offvalue">13</property>
+            <property name="onvalue">12</property>
             <property name="text" translatable="yes">Avvia automaticamente Mother 1</property>
             <property name="variable">int:skip_m1</property>
             <layout manager="pack">

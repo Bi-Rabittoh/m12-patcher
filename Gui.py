@@ -4,7 +4,7 @@ from tkinter.filedialog import askopenfilename
 import pathlib
 import pygubu
 import Constants
-from Functions import check_rom, show_warning
+from Functions import check_rom, show_warning, start_patching
 
 PROJECT_PATH = pathlib.Path(__file__).parent
 PROJECT_UI = PROJECT_PATH / "patcher.ui"
@@ -44,7 +44,7 @@ class PatcherApp:
         self.sprites.set(3)
         self.places.set(6)
         self.palette.set(8)
-        self.skip_m1.set(1)
+        self.skip_m1.set(12)
         self.progress_text.set(Constants.STATUS_START)
         
         self.apply_button = builder.get_object("apply_button")
@@ -53,12 +53,6 @@ class PatcherApp:
             self.browse_path.set(baserom)
         
         builder.connect_callbacks(self)
-    
-    def set_progress(self, percent, message):
-        self.progress.set(percent)
-        self.progress_text.set(message)
-
-    
     
     def run(self):
         self.mainwindow.mainloop()
@@ -77,8 +71,11 @@ class PatcherApp:
     def on_apply_button(self):
         self.apply_button['state'] = 'disabled'
         
-        if check_rom(self.browse_path.get()):
-            self.set_progress(20, Constants.STATUS_MD5)
-        else:
+        baserom_temp = self.browse_path.get()
+        
+        if not check_rom(baserom_temp):
             show_warning(Constants.WARNING_MD5_MISMATCH)
             self.apply_button['state'] = 'normal'
+            return
+        self.baserom = baserom_temp
+        start_patching(self)
