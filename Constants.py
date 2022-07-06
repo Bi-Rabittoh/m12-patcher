@@ -85,9 +85,9 @@ ALT_FILENAMES = {
         ['m1_main_text_jp.txt',
         'm1_gfx_map_jp.bin'],
 
-    'nes_palette_yes': 'nes.ips',
+    'nes_palette_yes': 'nes_palette.ips',
     'nes_palette_no': None,
-    'skip_m1_yes': 'skipm1.ips',
+    'skip_m1_yes': 'skip_m1.ips',
     'skip_m1_no': None
 }
 
