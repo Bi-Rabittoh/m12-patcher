@@ -4,6 +4,9 @@ An italian patcher for MOTHER 1+2, created by Team M🌍DRE and presented by Ear
 
 This project wouldn't be possible without the [MOTHER 1+2 Fan Translation](http://mother12.earthboundcentral.com/).
 
+## Discord
+You can follow updates and ask for help on our [Discord](https://discord.gg/qM9hk9n).
+
 ## Credits
 ### Coding
 * [Bi-Rabittoh](https://github.com/Bi-Rabittoh)

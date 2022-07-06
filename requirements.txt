@@ -1,0 +1,2 @@
+ips-util==1.0
+pygubu==0.22
