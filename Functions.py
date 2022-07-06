@@ -6,7 +6,7 @@ from shutil import copyfile
 import os, subprocess, Constants
 
 def check_rom(filename):
-    if filename == '':
+    if not os.path.exists(filename):
         return False
     with open(filename, 'rb') as f:
         file_hash = md5()
