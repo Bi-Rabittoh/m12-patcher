@@ -2,7 +2,6 @@
 build
 dist
 __pycache__
-tools
 venv
 *.gba
 *.sav
