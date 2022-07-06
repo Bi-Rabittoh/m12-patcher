@@ -91,7 +91,7 @@ def main():
     
     root = tkinter.Tk()
     root.title(Constants.VAR_WINDOW_TITLE)
-    root.iconbitmap(os.path.join(Constants.PATH_TOOLS, 'icon.ico'))
+    root.iconphoto(False, tkinter.PhotoImage(file=Constants.PATH_ICON))
     root.resizable(False, False)
     app = PatcherApp(root)
     app.run()

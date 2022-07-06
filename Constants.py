@@ -24,9 +24,6 @@ WARNING_MD5_MISMATCH = "La ROM selezionata non è compatibile con la nostra patc
 SUCCESS_TITLE = "Finito!"
 SUCCESS_CONTENT = f"La ROM {FINAL_ROM_NAME} è stata creata con successo!"
 
-PATH_TOOLS = os.path.join('.', 'tools')
-PATH_ALT = os.path.join(PATH_TOOLS, 'alt')
-
 PRESETS = {
     "Scelte consigliate": { # default preset
         'font': 'font_og',
@@ -110,6 +107,10 @@ DEF_FILENAMES = {
 DEF_PRESET = next(iter(PRESETS.items()))
 DEF_PATCHES = DEF_PRESET[1].keys() - DEF_FILENAMES.keys()
 
+PATH_TOOLS = os.path.join('.', 'tools')
+PATH_ALT = os.path.join(PATH_TOOLS, 'alt')
+PATH_ICON = os.path.join(PATH_TOOLS, 'icon.png')
+
 OS_SUFFIX = (
     '.exe' if platform.startswith('win32') else
     '_mac' if platform.startswith('darwin')
@@ -121,5 +122,4 @@ OS_FILENAMES = {
     'insert': os.path.join('.', 'insert' + OS_SUFFIX),
     'introconv': os.path.join('.', 'introconv' + OS_SUFFIX)
 }
-
 OS_SHELL = True if os.name == 'nt' else False
