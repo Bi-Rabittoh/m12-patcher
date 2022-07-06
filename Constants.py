@@ -29,28 +29,28 @@ PATH_ALT = os.path.join(PATH_TOOLS, 'alt')
 
 PRESETS = {
     "Scelte consigliate": { # default preset
-        'font': 'fonts_og',
+        'font': 'font_og',
         'sprites': 'sprites_mix',
         'places': 'places_us',
         'nes_palette': 'nes_palette_yes',
         'skip_m1': 'skip_m1_yes'
         },
-    "EB Beginnings (US)": {
-        'font': 'fonts_og',
+    "Earthbound Beginnings (US)": {
+        'font': 'font_og',
         'sprites': 'sprites_us',
         'places': 'places_us',
         'nes_palette': 'nes_palette_yes',
         'skip_m1': 'skip_m1_yes'
         },
     "Mother 1 (JP)": {
-        'font': 'fonts_og',
+        'font': 'font_og',
         'sprites': 'sprites_jp',
         'places': 'places_jp',
         'nes_palette': 'nes_palette_yes',
         'skip_m1': 'skip_m1_yes'
         },
     "Mother 1+2": {
-        'font': 'fonts_og',
+        'font': 'font_og',
         'sprites': 'sprites_us',
         'places': 'places_jp',
         'nes_palette': 'nes_palette_no',
@@ -59,9 +59,9 @@ PRESETS = {
 }
 
 ALT_FILENAMES = {
-    'fonts_og':
+    'font_og':
         ['m1_gfx_font_og.bin'],
-    'fonts_new':
+    'font_new':
         ['m1_gfx_font_new.bin'],
     'sprites_mix':
         ['m1_restoration_gfx_sprites_mix.bin',

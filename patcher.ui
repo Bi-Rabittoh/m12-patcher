@@ -68,7 +68,6 @@
           <object class="ttk.Combobox" id="preset_combo">
             <property name="state">readonly</property>
             <property name="textvariable">string:preset</property>
-            <property name="values">"Scelte consigliate" "EB Beginnings (US)" "Mother 1 (JP)" "Mother 1+2"</property>
             <layout manager="pack">
               <property name="fill">x</property>
               <property name="padx">5</property>
@@ -96,7 +95,7 @@
         <child>
           <object class="ttk.Radiobutton" id="font_serif">
             <property name="text" translatable="yes">Serif (originale)</property>
-            <property name="value">fonts_og</property>
+            <property name="value">font_og</property>
             <property name="variable">string:font</property>
             <layout manager="pack">
               <property name="anchor">w</property>
@@ -109,7 +108,7 @@
         <child>
           <object class="ttk.Radiobutton" id="font_sans">
             <property name="text" translatable="yes">Sans serif (alternativa di Tomato)</property>
-            <property name="value">fonts_new</property>
+            <property name="value">font_new</property>
             <property name="variable">string:font</property>
             <layout manager="pack">
               <property name="anchor">w</property>

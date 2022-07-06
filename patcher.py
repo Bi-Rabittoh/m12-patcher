@@ -8,8 +8,6 @@ from pygubu import Builder
 PROJECT_PATH = Path(__file__).parent
 PROJECT_UI = PROJECT_PATH / "patcher.ui"
 
-
-
 class PatcherApp:
     def __init__(self, master=None):
         self.builder = builder = Builder()
@@ -18,6 +16,7 @@ class PatcherApp:
         # Main widget
         self.mainwindow = builder.get_object("main_frame", master)
         self.apply_button = builder.get_object("apply_button")
+        self.preset_combo = builder.get_object("preset_combo")
         
         self.browse_path = None
         self.preset = None
@@ -42,7 +41,9 @@ class PatcherApp:
                 "skip_m1",
             ],
         )
-
+        
+        for preset in Constants.PRESETS.keys():
+            self.preset_combo['values'] = (*self.preset_combo['values'], preset)
         self.preset.trace('w', self.on_change_preset)
         self.preset.set(Constants.DEF_PRESET[0])
         self.status_text.set(Constants.STATUS_START)
@@ -63,11 +64,6 @@ class PatcherApp:
     def on_browse_button(self):
         fn = askopenfilename(filetypes=[(Constants.VAR_FILEPICKER, '*.gba')])
         self.browse_path.set(fn)
-
-    def trace_f(self, var, index, mode):
-        preset = var.get()
-        if apply_preset(self, preset):
-            set_progress(self, 0, Constants.STATUS_PRESET)
     
     def on_change_preset(self, *arg):
         preset = self.preset.get()

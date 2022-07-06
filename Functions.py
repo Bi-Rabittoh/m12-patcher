@@ -36,26 +36,22 @@ def apply_patch(base, ips):
 def show_warning(message):
     showwarning(title=Constants.WARNING_TITLE, message=message)
     
-def show_success(message):
-    showinfo(title=Constants.SUCCESS_TITLE, message=message)
-
 def set_progress(app, percent, message):
     app.progress.set(percent)
     app.status_text.set(message) 
 
-def read_options(app, output, keys):
+def read_options(app, keys):
+    output = {}
     for key in keys:
         new_option = getattr(app, key).get()
         output[key] = Constants.ALT_FILENAMES[new_option]
+    return output
 
 def start_patching(app):
     set_progress(app, 20, Constants.STATUS_MD5)
     delete_list = []
     
-    #sel_filenames = {}
-    #sel_patches = {}
-    read_options(app, sel_filenames, Constants.DEF_FILENAMES.keys())
-    read_options(app, sel_patches, Constants.DEF_PATCHES)
+    sel_filenames = read_options(app, Constants.DEF_FILENAMES.keys())
     
     for key in sel_filenames.keys():
         sel_list = sel_filenames[key]
@@ -70,18 +66,20 @@ def start_patching(app):
             
     target = os.path.join(Constants.PATH_TOOLS, 'test.gba')
     copyfile(app.baserom, target)
-    
     set_progress(app, 40, Constants.STATUS_COPIED)
+    
     p = subprocess.Popen([Constants.OS_FILENAMES['xkas'], '-o', 'test.gba', 'm12.asm'],
                          cwd=Constants.PATH_TOOLS, shell=Constants.OS_SHELL)
     p.wait()
-
     set_progress(app, 50, Constants.STATUS_ASSEMBLY)
+
     p = subprocess.Popen([Constants.OS_FILENAMES['insert']],
                          cwd=Constants.PATH_TOOLS, shell=Constants.OS_SHELL)
     p.wait()
-       
     set_progress(app, 70, Constants.STATUS_INJECTED)
+        
+    sel_patches = read_options(app, Constants.DEF_PATCHES)
+    
     for key in sel_patches.keys():
         val = sel_patches[key]
         
@@ -90,10 +88,10 @@ def start_patching(app):
             apply_patch(target, path)
         
     os.replace(target, Constants.FINAL_ROM_NAME)
-       
     set_progress(app, 90, Constants.STATUS_PATCHED)
+       
     for item in delete_list:
         os.remove(item)
 
     set_progress(app, 100, Constants.STATUS_CLEANED)
-    show_success(Constants.SUCCESS_CONTENT)
+    showinfo(title=Constants.SUCCESS_TITLE, message=Constants.SUCCESS_CONTENT)
