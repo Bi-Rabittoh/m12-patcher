@@ -5,8 +5,8 @@ from sys import platform
 PATCH_VERSION = '1.1.1'
 FINAL_ROM_NAME = f'Mother 1+2 [T+Ita{PATCH_VERSION}].gba'
 
+STATUS_PRESET = "Preset applicato" # Niente punto qui
 STATUS_START = "Patcher pronto all'uso."
-STATUS_PRESET = "Preset applicato."
 STATUS_MD5 = "MD5 verificato."
 STATUS_COPIED = "File copiati."
 STATUS_ASSEMBLY = "Codice compilato."
@@ -29,37 +29,74 @@ PATH_ALT = os.path.join(PATH_TOOLS, 'alt')
 
 PRESETS = {
     "Scelte consigliate": {
-        'font': 1,
-        'sprites': 3,
-        'places': 6,
-        'palette': 8,
-        'skip_m1': 12
+        'font': 'fonts_og',
+        'sprites': 'sprites_mix',
+        'places': 'places_us',
+        'palette': 'palette_nes',
+        'skip_m1': 'skip_m1_yes'
         },
     "EB Beginnings (US)": {
-        'font': 1,
-        'sprites': 4,
-        'places': 6,
-        'palette': 8,
-        'skip_m1': 12
+        'font': 'fonts_og',
+        'sprites': 'sprites_us',
+        'places': 'places_us',
+        'palette': 'palette_nes',
+        'skip_m1': 'skip_m1_yes'
         },
     "Mother 1 (JP)": {
-        'font': 1,
-        'sprites': 5,
-        'places': 7,
-        'palette': 8,
-        'skip_m1': 12
+        'font': 'fonts_og',
+        'sprites': 'sprites_jp',
+        'places': 'places_jp',
+        'palette': 'palette_nes',
+        'skip_m1': 'skip_m1_yes'
         },
     "Mother 1+2": {
-        'font': 1,
-        'sprites': 4,
-        'places': 7,
-        'palette': 9,
-        'skip_m1': 13
+        'font': 'fonts_og',
+        'sprites': 'sprites_us',
+        'places': 'places_jp',
+        'palette': 'palette_gba',
+        'skip_m1': 'skip_m1_no'
         }
 }
 
+ALT_FILENAMES = {
+    'fonts_og':
+        ['m1_gfx_font_og.bin'],
+    'fonts_new':
+        ['m1_gfx_font_new.bin'],
+    'sprites_mix':
+        ['m1_restoration_gfx_sprites_mix.bin',
+        'm1_restoration_gfx_ending_us.bin',
+        'm1_restoration_gfx_enemies_jp.bin',
+        'm1_restoration_gfx_maptiles_jp.bin'],
+    'sprites_us':
+        ['m1_restoration_gfx_sprites_us.bin',
+        'm1_restoration_gfx_ending_us.bin',
+        'm1_restoration_gfx_enemies_us.bin',
+        'm1_restoration_gfx_maptiles_us.bin'],
+    'sprites_jp':
+        ['m1_restoration_gfx_sprites_jp.bin',
+        'm1_restoration_gfx_ending_jp.bin',
+        'm1_restoration_gfx_enemies_jp.bin',
+        'm1_restoration_gfx_maptiles_jp.bin'],
+    'places_us':
+        ['m1_main_text_us.txt',
+        'm1_gfx_map_us.bin'],
+    'places_jp':
+        ['m1_main_text_jp.txt',
+        'm1_gfx_map_jp.bin'],
+
+    'palette_nes': 'nes.ips',
+    'palette_gba': None,
+    'palette_ncm': 'ncm.ips',
+    'palette_vc': 'vc.ips',
+    'skip_m1_yes': 'skipm1.ips',
+    'skip_m1_no': None
+}
+
 DEF_FILENAMES = {
-    'font': ['m1_gfx_font.bin'],
+    'font': [
+        'm1_gfx_font.bin'
+    ],
     'sprites': [
         'm1_restoration_gfx_sprites.bin',
         'm1_restoration_gfx_ending.bin',
@@ -70,40 +107,6 @@ DEF_FILENAMES = {
         'm1_main_text.txt',
         'm1_gfx_map.bin'
     ]
-}
-
-ALT_FILENAMES = {
-    1: ['m1_gfx_font_og.bin'],
-
-    2: ['m1_gfx_font_new.bin'],
-
-    3: ['m1_restoration_gfx_sprites_mix.bin',
-        'm1_restoration_gfx_ending_us.bin',
-        'm1_restoration_gfx_enemies_jp.bin',
-        'm1_restoration_gfx_maptiles_jp.bin'],
-
-    4: ['m1_restoration_gfx_sprites_us.bin',
-        'm1_restoration_gfx_ending_us.bin',
-        'm1_restoration_gfx_enemies_us.bin',
-        'm1_restoration_gfx_maptiles_us.bin'],
-
-    5: ['m1_restoration_gfx_sprites_jp.bin',
-        'm1_restoration_gfx_ending_jp.bin',
-        'm1_restoration_gfx_enemies_jp.bin',
-        'm1_restoration_gfx_maptiles_jp.bin'],
-
-    6: ['m1_main_text_us.txt',
-        'm1_gfx_map_us.bin'],
-
-    7: ['m1_main_text_jp.txt',
-        'm1_gfx_map_jp.bin'],
-    
-    8: 'nes.ips',
-    9: None,
-    10: 'ncm.ips',
-    11: 'vc.ips',
-    12: 'skipm1.ips',
-    13: None
 }
 
 OS_SUFFIX = (

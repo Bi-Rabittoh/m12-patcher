@@ -1,6 +1,6 @@
 # Mother 1+2 Patcher 🇮🇹
 
-An italian patcher for MOTHER 1+2, created by Team M🌍DRE and presented by Earthbound Café.
+An italian patcher for MOTHER 1+2, created by Team M🌍DRE and presented by [Earthbound Café](https://linktr.ee/earthboundcafe).
 
 This project wouldn't be possible without the [MOTHER 1+2 Fan Translation](http://mother12.earthboundcentral.com/).
 

@@ -96,8 +96,8 @@
         <child>
           <object class="ttk.Radiobutton" id="font_serif">
             <property name="text" translatable="yes">Serif (originale)</property>
-            <property name="value">1</property>
-            <property name="variable">int:font</property>
+            <property name="value">fonts_og</property>
+            <property name="variable">string:font</property>
             <layout manager="pack">
               <property name="anchor">w</property>
               <property name="padx">5</property>
@@ -109,8 +109,8 @@
         <child>
           <object class="ttk.Radiobutton" id="font_sans">
             <property name="text" translatable="yes">Sans serif (alternativa di Tomato)</property>
-            <property name="value">2</property>
-            <property name="variable">int:font</property>
+            <property name="value">fonts_new</property>
+            <property name="variable">string:font</property>
             <layout manager="pack">
               <property name="anchor">w</property>
               <property name="padx">5</property>
@@ -138,8 +138,8 @@
         <child>
           <object class="ttk.Radiobutton" id="places_us">
             <property name="text" translatable="yes">Occidentali</property>
-            <property name="value">6</property>
-            <property name="variable">int:places</property>
+            <property name="value">places_us</property>
+            <property name="variable">string:places</property>
             <layout manager="pack">
               <property name="anchor">w</property>
               <property name="padx">5</property>
@@ -151,8 +151,8 @@
         <child>
           <object class="ttk.Radiobutton" id="places_jp">
             <property name="text" translatable="yes">Giapponesi</property>
-            <property name="value">7</property>
-            <property name="variable">int:places</property>
+            <property name="value">places_jp</property>
+            <property name="variable">string:places</property>
             <layout manager="pack">
               <property name="anchor">w</property>
               <property name="padx">5</property>
@@ -180,8 +180,8 @@
         <child>
           <object class="ttk.Radiobutton" id="sprites_mix">
             <property name="text" translatable="yes">Misti (aggiornati non censurati)</property>
-            <property name="value">3</property>
-            <property name="variable">int:sprites</property>
+            <property name="value">sprites_mix</property>
+            <property name="variable">string:sprites</property>
             <layout manager="pack">
               <property name="anchor">w</property>
               <property name="padx">5</property>
@@ -193,8 +193,8 @@
         <child>
           <object class="ttk.Radiobutton" id="sprites_us">
             <property name="text" translatable="yes">Aggiornati e censurati (EBB, M1+2)</property>
-            <property name="value">4</property>
-            <property name="variable">int:sprites</property>
+            <property name="value">sprites_us</property>
+            <property name="variable">string:sprites</property>
             <layout manager="pack">
               <property name="anchor">w</property>
               <property name="padx">5</property>
@@ -206,8 +206,8 @@
         <child>
           <object class="ttk.Radiobutton" id="sprites_jp">
             <property name="text" translatable="yes">Originali (M1)</property>
-            <property name="value">5</property>
-            <property name="variable">int:sprites</property>
+            <property name="value">sprites_jp</property>
+            <property name="variable">string:sprites</property>
             <layout manager="pack">
               <property name="anchor">w</property>
               <property name="padx">5</property>
@@ -235,8 +235,8 @@
         <child>
           <object class="ttk.Radiobutton" id="palette_nes">
             <property name="text" translatable="yes">NES</property>
-            <property name="value">8</property>
-            <property name="variable">int:palette</property>
+            <property name="value">palette_nes</property>
+            <property name="variable">string:palette</property>
             <layout manager="pack">
               <property name="anchor">w</property>
               <property name="padx">5</property>
@@ -248,8 +248,8 @@
         <child>
           <object class="ttk.Radiobutton" id="palette_gba">
             <property name="text" translatable="yes">GBA</property>
-            <property name="value">9</property>
-            <property name="variable">int:palette</property>
+            <property name="value">palette_gba</property>
+            <property name="variable">string:palette</property>
             <layout manager="pack">
               <property name="anchor">w</property>
               <property name="padx">5</property>
@@ -261,8 +261,8 @@
         <child>
           <object class="ttk.Radiobutton" id="palette_ncm">
             <property name="text" translatable="yes">Nintendo Classic Mini - NES</property>
-            <property name="value">10</property>
-            <property name="variable">int:palette</property>
+            <property name="value">palette_ncm</property>
+            <property name="variable">string:palette</property>
             <layout manager="pack">
               <property name="anchor">w</property>
               <property name="padx">5</property>
@@ -290,10 +290,10 @@
         </layout>
         <child>
           <object class="ttk.Checkbutton" id="skip_m1_check">
-            <property name="offvalue">13</property>
-            <property name="onvalue">12</property>
+            <property name="offvalue">skip_m1_no</property>
+            <property name="onvalue">skip_m1_yes</property>
             <property name="text" translatable="yes">Avvia automaticamente Mother 1</property>
-            <property name="variable">int:skip_m1</property>
+            <property name="variable">string:skip_m1</property>
             <layout manager="pack">
               <property name="anchor">w</property>
               <property name="padx">5</property>

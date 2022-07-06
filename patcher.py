@@ -70,8 +70,9 @@ class PatcherApp:
             set_progress(self, 0, Constants.STATUS_PRESET)
     
     def on_change_preset(self, *arg):
-        if apply_preset(self, self.preset.get()):
-            set_progress(self, 0, Constants.STATUS_PRESET)
+        preset = self.preset.get()
+        if apply_preset(self, preset):
+            set_progress(self, 0, f'{Constants.STATUS_PRESET}: {preset}.')
 
     def on_apply_button(self):
         self.apply_button['state'] = 'disabled'
