@@ -26,6 +26,7 @@
             <property name="textvariable">string:browse_path</property>
             <property name="width">23</property>
             <layout manager="pack">
+              <property name="expand">true</property>
               <property name="fill">x</property>
               <property name="padx">3</property>
               <property name="pady">5</property>
@@ -39,6 +40,8 @@
             <property name="text" translatable="yes">...</property>
             <property name="width">2</property>
             <layout manager="pack">
+              <property name="expand">false</property>
+              <property name="fill">x</property>
               <property name="ipadx">2</property>
               <property name="padx">5</property>
               <property name="side">right</property>
@@ -62,13 +65,14 @@
           <property name="sticky">ew</property>
         </layout>
         <child>
-          <object class="tk.OptionMenu" id="preset_menu">
-            <property name="command" type="command" cbtype="simple">on_change_preset</property>
-            <property name="value">Scelte consigliate</property>
-            <property name="values">Scelte consigliate,EB Beginnings (US),Mother 1 (JP),Mother 1+2</property>
-            <property name="variable">string:preset</property>
+          <object class="ttk.Combobox" id="preset_combo">
+            <property name="state">readonly</property>
+            <property name="textvariable">string:preset</property>
+            <property name="values">"Scelte consigliate" "EB Beginnings (US)" "Mother 1 (JP)" "Mother 1+2"</property>
             <layout manager="pack">
               <property name="fill">x</property>
+              <property name="padx">5</property>
+              <property name="pady">8</property>
               <property name="side">top</property>
             </layout>
           </object>
@@ -96,6 +100,8 @@
             <property name="variable">int:font</property>
             <layout manager="pack">
               <property name="anchor">w</property>
+              <property name="padx">5</property>
+              <property name="pady">1</property>
               <property name="side">top</property>
             </layout>
           </object>
@@ -107,6 +113,8 @@
             <property name="variable">int:font</property>
             <layout manager="pack">
               <property name="anchor">w</property>
+              <property name="padx">5</property>
+              <property name="pady">1</property>
               <property name="side">top</property>
             </layout>
           </object>
@@ -129,11 +137,13 @@
         </layout>
         <child>
           <object class="ttk.Radiobutton" id="places_us">
-            <property name="text" translatable="yes">Americani</property>
+            <property name="text" translatable="yes">Occidentali</property>
             <property name="value">6</property>
             <property name="variable">int:places</property>
             <layout manager="pack">
               <property name="anchor">w</property>
+              <property name="padx">5</property>
+              <property name="pady">1</property>
               <property name="side">top</property>
             </layout>
           </object>
@@ -145,6 +155,8 @@
             <property name="variable">int:places</property>
             <layout manager="pack">
               <property name="anchor">w</property>
+              <property name="padx">5</property>
+              <property name="pady">1</property>
               <property name="side">top</property>
             </layout>
           </object>
@@ -172,6 +184,8 @@
             <property name="variable">int:sprites</property>
             <layout manager="pack">
               <property name="anchor">w</property>
+              <property name="padx">5</property>
+              <property name="pady">1</property>
               <property name="side">top</property>
             </layout>
           </object>
@@ -183,6 +197,8 @@
             <property name="variable">int:sprites</property>
             <layout manager="pack">
               <property name="anchor">w</property>
+              <property name="padx">5</property>
+              <property name="pady">1</property>
               <property name="side">top</property>
             </layout>
           </object>
@@ -194,6 +210,8 @@
             <property name="variable">int:sprites</property>
             <layout manager="pack">
               <property name="anchor">w</property>
+              <property name="padx">5</property>
+              <property name="pady">1</property>
               <property name="side">top</property>
             </layout>
           </object>
@@ -212,7 +230,7 @@
           <property name="padx">5</property>
           <property name="pady">5</property>
           <property name="row">2</property>
-          <property name="sticky">ew</property>
+          <property name="sticky">new</property>
         </layout>
         <child>
           <object class="ttk.Radiobutton" id="palette_nes">
@@ -221,6 +239,8 @@
             <property name="variable">int:palette</property>
             <layout manager="pack">
               <property name="anchor">w</property>
+              <property name="padx">5</property>
+              <property name="pady">1</property>
               <property name="side">top</property>
             </layout>
           </object>
@@ -232,17 +252,21 @@
             <property name="variable">int:palette</property>
             <layout manager="pack">
               <property name="anchor">w</property>
+              <property name="padx">5</property>
+              <property name="pady">1</property>
               <property name="side">top</property>
             </layout>
           </object>
         </child>
         <child>
-          <object class="ttk.Radiobutton" id="palette_vc">
-            <property name="text" translatable="yes">Virtual Console Wii e Wii U</property>
-            <property name="value">11</property>
+          <object class="ttk.Radiobutton" id="palette_ncm">
+            <property name="text" translatable="yes">Nintendo Classic Mini - NES</property>
+            <property name="value">10</property>
             <property name="variable">int:palette</property>
             <layout manager="pack">
               <property name="anchor">w</property>
+              <property name="padx">5</property>
+              <property name="pady">1</property>
               <property name="side">top</property>
             </layout>
           </object>
@@ -272,6 +296,8 @@
             <property name="variable">int:skip_m1</property>
             <layout manager="pack">
               <property name="anchor">w</property>
+              <property name="padx">5</property>
+              <property name="pady">1</property>
               <property name="side">top</property>
             </layout>
           </object>

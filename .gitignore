@@ -1,4 +1,5 @@
 .vscode
+pygubu
 build
 dist
 __pycache__

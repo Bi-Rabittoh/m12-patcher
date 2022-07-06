@@ -8,6 +8,8 @@ from pygubu import Builder
 PROJECT_PATH = Path(__file__).parent
 PROJECT_UI = PROJECT_PATH / "patcher.ui"
 
+
+
 class PatcherApp:
     def __init__(self, master=None):
         self.builder = builder = Builder()
@@ -15,7 +17,8 @@ class PatcherApp:
         builder.add_from_file(PROJECT_UI)
         # Main widget
         self.mainwindow = builder.get_object("main_frame", master)
-
+        self.apply_button = builder.get_object("apply_button")
+        
         self.browse_path = None
         self.preset = None
         self.font = None
@@ -39,10 +42,10 @@ class PatcherApp:
                 "status_text",
             ],
         )
-        apply_preset(self, next(iter(Constants.PRESETS.items()))[1])
+
+        self.preset.trace('w', self.on_change_preset)
+        self.preset.set(next(iter(Constants.PRESETS.keys())))
         self.status_text.set(Constants.STATUS_START)
-        
-        self.apply_button = builder.get_object("apply_button")
         
         baserom = None
         for file in os.listdir('.'):
@@ -61,11 +64,14 @@ class PatcherApp:
         fn = askopenfilename(filetypes=[(Constants.VAR_FILEPICKER, '*.gba')])
         self.browse_path.set(fn)
 
-    def on_change_preset(self, option):
-        preset = Constants.PRESETS[option]
-        apply_preset(self, preset)
-        
-        set_progress(self, 0, Constants.STATUS_PRESET)
+    def trace_f(self, var, index, mode):
+        preset = var.get()
+        if apply_preset(self, preset):
+            set_progress(self, 0, Constants.STATUS_PRESET)
+    
+    def on_change_preset(self, *arg):
+        if apply_preset(self, self.preset.get()):
+            set_progress(self, 0, Constants.STATUS_PRESET)
 
     def on_apply_button(self):
         self.apply_button['state'] = 'disabled'
@@ -78,6 +84,8 @@ class PatcherApp:
             return
         self.baserom = baserom_temp
         start_patching(self)
+        self.apply_button['state'] = 'enabled'
+        set_progress(self, 0, Constants.STATUS_START)
 
 def main():
     if not os.path.isdir(Constants.PATH_TOOLS):
@@ -86,6 +94,7 @@ def main():
     
     root = tkinter.Tk()
     root.title(Constants.VAR_WINDOW_TITLE)
+    root.resizable(False, False)
     app = PatcherApp(root)
     app.run()
 

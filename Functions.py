@@ -15,9 +15,13 @@ def check_rom(filename):
 
     return file_hash.hexdigest() == 'f41e36204356974c94fabf7d144dd32a'
 
-def apply_preset(app, preset):
-    for key in preset.keys():
+def apply_preset(app, preset_name):
+    if preset_name in Constants.PRESETS:
+        preset = Constants.PRESETS[preset_name]
+        for key in preset.keys():
             getattr(app, key).set(preset[key])
+        return True
+    return False
 
 def apply_patch(base, ips):
     patch = Patch.load(ips)
