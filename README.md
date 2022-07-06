@@ -11,14 +11,14 @@ This project wouldn't be possible without the [MOTHER 1+2 Fan Translation](http:
 * [PhoenixBound](https://github.com/PhoenixBound)
   * Precious help on fixing archaic code;
 * [Tomato](https://twitter.com/clydemandelin)
-  * Hacking
-  * Translating
+  * Hacking,
+  * Translating;
 * [Jeffman](https://github.com/jeffman)
-  * Hacking assistance
+  * Hacking assistance;
 * [byuu](#)
-  * xkas assembler
+  * xkas assembler;
 * [devinacker](https://github.com/devinacker)
-  * xkas-plus
+  * xkas-plus.
 
 ### Translation
 * [Korenji](https://github.com/Korenji)
