@@ -62,7 +62,7 @@ class PatcherApp:
         self.mainwindow.mainloop()
 
     def on_browse_button(self):
-        fn = askopenfilename(filetypes=[(Constants.VAR_FILEPICKER, '*.gba')])
+        fn = askopenfilename(filetypes=[(Constants.VAR_FILEPICKER, '*.gba')], initialdir='.')
         self.browse_path.set(fn)
     
     def on_change_preset(self, *arg):
@@ -91,6 +91,7 @@ def main():
     
     root = tkinter.Tk()
     root.title(Constants.VAR_WINDOW_TITLE)
+    root.iconbitmap(os.path.join(Constants.PATH_TOOLS, 'icon.ico'))
     root.resizable(False, False)
     app = PatcherApp(root)
     app.run()
