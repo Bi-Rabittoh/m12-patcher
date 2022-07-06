@@ -21,30 +21,30 @@ class PatcherApp:
         
         self.browse_path = None
         self.preset = None
+        self.progress = None
+        self.status_text = None
         self.font = None
         self.places = None
         self.sprites = None
-        self.palette = None
+        self.nes_palette = None
         self.skip_m1 = None
-        self.progress = None
-        self.status_text = None
         builder.import_variables(
             self,
             [
                 "browse_path",
                 "preset",
+                "progress",
+                "status_text",
                 "font",
                 "places",
                 "sprites",
-                "palette",
+                "nes_palette",
                 "skip_m1",
-                "progress",
-                "status_text",
             ],
         )
 
         self.preset.trace('w', self.on_change_preset)
-        self.preset.set(next(iter(Constants.PRESETS.keys())))
+        self.preset.set(Constants.DEF_PRESET[0])
         self.status_text.set(Constants.STATUS_START)
         
         baserom = None

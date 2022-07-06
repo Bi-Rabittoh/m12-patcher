@@ -169,7 +169,7 @@
         <property name="text" translatable="yes"> Sprite e tileset </property>
         <property name="width">200</property>
         <layout manager="grid">
-          <property name="column">1</property>
+          <property name="column">0</property>
           <property name="ipadx">2</property>
           <property name="ipady">2</property>
           <property name="padx">5</property>
@@ -219,12 +219,12 @@
       </object>
     </child>
     <child>
-      <object class="ttk.Labelframe" id="palette_frame">
+      <object class="ttk.Labelframe" id="other_frame">
         <property name="height">200</property>
-        <property name="text" translatable="yes"> Palette dei colori </property>
+        <property name="text" translatable="yes"> Altri miglioramenti </property>
         <property name="width">200</property>
         <layout manager="grid">
-          <property name="column">0</property>
+          <property name="column">1</property>
           <property name="ipadx">2</property>
           <property name="ipady">2</property>
           <property name="padx">5</property>
@@ -233,10 +233,11 @@
           <property name="sticky">new</property>
         </layout>
         <child>
-          <object class="ttk.Radiobutton" id="palette_nes">
-            <property name="text" translatable="yes">NES</property>
-            <property name="value">palette_nes</property>
-            <property name="variable">string:palette</property>
+          <object class="ttk.Checkbutton" id="nes_palette_check">
+            <property name="offvalue">nes_palette_no</property>
+            <property name="onvalue">nes_palette_yes</property>
+            <property name="text" translatable="yes">Palette NES</property>
+            <property name="variable">string:nes_palette</property>
             <layout manager="pack">
               <property name="anchor">w</property>
               <property name="padx">5</property>
@@ -245,49 +246,6 @@
             </layout>
           </object>
         </child>
-        <child>
-          <object class="ttk.Radiobutton" id="palette_gba">
-            <property name="text" translatable="yes">GBA</property>
-            <property name="value">palette_gba</property>
-            <property name="variable">string:palette</property>
-            <layout manager="pack">
-              <property name="anchor">w</property>
-              <property name="padx">5</property>
-              <property name="pady">1</property>
-              <property name="side">top</property>
-            </layout>
-          </object>
-        </child>
-        <child>
-          <object class="ttk.Radiobutton" id="palette_ncm">
-            <property name="text" translatable="yes">Nintendo Classic Mini - NES</property>
-            <property name="value">palette_ncm</property>
-            <property name="variable">string:palette</property>
-            <layout manager="pack">
-              <property name="anchor">w</property>
-              <property name="padx">5</property>
-              <property name="pady">1</property>
-              <property name="side">top</property>
-            </layout>
-          </object>
-        </child>
-      </object>
-    </child>
-    <child>
-      <object class="ttk.Labelframe" id="other_frame">
-        <property name="height">200</property>
-        <property name="text" translatable="yes"> Altri miglioramenti </property>
-        <property name="width">200</property>
-        <layout manager="grid">
-          <property name="column">0</property>
-          <property name="columnspan">2</property>
-          <property name="ipadx">2</property>
-          <property name="ipady">2</property>
-          <property name="padx">5</property>
-          <property name="pady">5</property>
-          <property name="row">3</property>
-          <property name="sticky">ew</property>
-        </layout>
         <child>
           <object class="ttk.Checkbutton" id="skip_m1_check">
             <property name="offvalue">skip_m1_no</property>

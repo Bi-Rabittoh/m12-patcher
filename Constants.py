@@ -28,32 +28,32 @@ PATH_TOOLS = os.path.join('.', 'tools')
 PATH_ALT = os.path.join(PATH_TOOLS, 'alt')
 
 PRESETS = {
-    "Scelte consigliate": {
+    "Scelte consigliate": { # default preset
         'font': 'fonts_og',
         'sprites': 'sprites_mix',
         'places': 'places_us',
-        'palette': 'palette_nes',
+        'nes_palette': 'nes_palette_yes',
         'skip_m1': 'skip_m1_yes'
         },
     "EB Beginnings (US)": {
         'font': 'fonts_og',
         'sprites': 'sprites_us',
         'places': 'places_us',
-        'palette': 'palette_nes',
+        'nes_palette': 'nes_palette_yes',
         'skip_m1': 'skip_m1_yes'
         },
     "Mother 1 (JP)": {
         'font': 'fonts_og',
         'sprites': 'sprites_jp',
         'places': 'places_jp',
-        'palette': 'palette_nes',
+        'nes_palette': 'nes_palette_yes',
         'skip_m1': 'skip_m1_yes'
         },
     "Mother 1+2": {
         'font': 'fonts_og',
         'sprites': 'sprites_us',
         'places': 'places_jp',
-        'palette': 'palette_gba',
+        'nes_palette': 'nes_palette_no',
         'skip_m1': 'skip_m1_no'
         }
 }
@@ -85,10 +85,8 @@ ALT_FILENAMES = {
         ['m1_main_text_jp.txt',
         'm1_gfx_map_jp.bin'],
 
-    'palette_nes': 'nes.ips',
-    'palette_gba': None,
-    'palette_ncm': 'ncm.ips',
-    'palette_vc': 'vc.ips',
+    'nes_palette_yes': 'nes.ips',
+    'nes_palette_no': None,
     'skip_m1_yes': 'skipm1.ips',
     'skip_m1_no': None
 }
@@ -108,6 +106,9 @@ DEF_FILENAMES = {
         'm1_gfx_map.bin'
     ]
 }
+
+DEF_PRESET = next(iter(PRESETS.items()))
+DEF_PATCHES = DEF_PRESET[1].keys() - DEF_FILENAMES.keys()
 
 OS_SUFFIX = (
     '.exe' if platform.startswith('win32') else

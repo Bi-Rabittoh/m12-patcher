@@ -43,20 +43,19 @@ def set_progress(app, percent, message):
     app.progress.set(percent)
     app.status_text.set(message) 
 
+def read_options(app, output, keys):
+    for key in keys:
+        new_option = getattr(app, key).get()
+        output[key] = Constants.ALT_FILENAMES[new_option]
+
 def start_patching(app):
     set_progress(app, 20, Constants.STATUS_MD5)
     delete_list = []
     
-    sel_filenames = {
-        'font': Constants.ALT_FILENAMES[app.font.get()],
-        'sprites': Constants.ALT_FILENAMES[app.sprites.get()],
-        'places': Constants.ALT_FILENAMES[app.places.get()]
-    }
-    
-    sel_patches = {
-        'palette': Constants.ALT_FILENAMES[app.palette.get()],
-        'skip_m1': Constants.ALT_FILENAMES[app.skip_m1.get()]
-    }
+    #sel_filenames = {}
+    #sel_patches = {}
+    read_options(app, sel_filenames, Constants.DEF_FILENAMES.keys())
+    read_options(app, sel_patches, Constants.DEF_PATCHES)
     
     for key in sel_filenames.keys():
         sel_list = sel_filenames[key]
