@@ -37,7 +37,7 @@ def show_success(message):
 
 def set_progress(app, percent, message):
     app.progress.set(percent)
-    app.progress_text.set(message) 
+    app.status_text.set(message) 
 
 def start_patching(app):
     set_progress(app, 20, Constants.STATUS_MD5)
@@ -94,4 +94,3 @@ def start_patching(app):
 
     set_progress(app, 100, Constants.STATUS_CLEANED)
     show_success(Constants.SUCCESS_CONTENT)
-    

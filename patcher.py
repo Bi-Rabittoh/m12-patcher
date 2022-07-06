@@ -9,7 +9,7 @@ PROJECT_PATH = Path(__file__).parent
 PROJECT_UI = PROJECT_PATH / "patcher.ui"
 
 class PatcherApp:
-    def __init__(self, master=None, baserom=None):
+    def __init__(self, master=None):
         self.builder = builder = Builder()
         builder.add_resource_path(PROJECT_PATH)
         builder.add_from_file(PROJECT_UI)
@@ -24,7 +24,7 @@ class PatcherApp:
         self.palette = None
         self.skip_m1 = None
         self.progress = None
-        self.progress_text = None
+        self.status_text = None
         builder.import_variables(
             self,
             [
@@ -36,14 +36,19 @@ class PatcherApp:
                 "palette",
                 "skip_m1",
                 "progress",
-                "progress_text",
+                "status_text",
             ],
         )
         apply_preset(self, next(iter(Constants.PRESETS.items()))[1])
-        self.progress_text.set(Constants.STATUS_START)
+        self.status_text.set(Constants.STATUS_START)
         
         self.apply_button = builder.get_object("apply_button")
         
+        baserom = None
+        for file in os.listdir('.'):
+            if file.lower().endswith('.gba'):
+                filename = os.path.join('.', file)
+                baserom = filename if check_rom(filename) else baserom
         if baserom is not None:
             self.browse_path.set(baserom)
         
@@ -78,16 +83,10 @@ def main():
     if not os.path.isdir(Constants.PATH_TOOLS):
         show_warning(Constants.WARNING_EXTRACT)
         return
-
-    baserom = None
-    for file in os.listdir('.'):
-        if file.lower().endswith('.gba'):
-            filename = os.path.join('.', file)
-            baserom = filename if check_rom(filename) else baserom
     
     root = tkinter.Tk()
     root.title(Constants.VAR_WINDOW_TITLE)
-    app = PatcherApp(root, baserom)
+    app = PatcherApp(root)
     app.run()
 
 if __name__ == "__main__":

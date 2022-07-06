@@ -5,7 +5,7 @@ from sys import platform
 PATCH_VERSION = '1.1.1'
 FINAL_ROM_NAME = f'Mother 1+2 [T+Ita{PATCH_VERSION}].gba'
 
-STATUS_START = "Benvenuto al patcher per Mother 1+2."
+STATUS_START = "Patcher pronto all'uso."
 STATUS_PRESET = "Preset applicato."
 STATUS_MD5 = "MD5 verificato."
 STATUS_COPIED = "File copiati."
